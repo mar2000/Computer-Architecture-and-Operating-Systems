@@ -156,7 +156,6 @@ done_crc:
 
             ; Wypisywanie wyliczonego crc ktore jest w r8. 
 print_crc:
-    ;mov r8, [crc_val]
     mov rcx, 64              
     sub rcx, r9                                            ; Oblicz, ile bitów brakuje do 64.
     shr r8, cl
