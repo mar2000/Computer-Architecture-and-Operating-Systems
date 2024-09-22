@@ -32,8 +32,8 @@ _start:
         ; w trakcie konwersji (r8b = 1 oznacza morse->text zaś r8b = 2 oznacza text->morse).
 read_loop:
     SYS_READ                                               
-    mov rsi, buffer_in
-    mov rdx, 8192
+      mov rsi, buffer_in
+      mov rdx, 8192
     xor rdi, rdi
     syscall
     test rax, rax                                          ; Sprawdzenie, czy koniec pliku lub błąd.
@@ -172,7 +172,7 @@ end_code:
 		; Wyjście z błędem. 
 exit_error:                                                
     SYS_EXIT
-    mov rdi, 1
+      mov rdi, 1
     syscall
 
 		; Wypisanie bufora wyjściowego - Po przeanalizowaniu wszystkich znaków z bufora wejściowego 
@@ -183,9 +183,9 @@ print_buffer:
     mov rdx, rdi
     sub rdx, buffer_out
     SYS_WRITE
-    mov rsi, buffer_out
-    mov rdi, 1
-    mov rax, 1
+      mov rsi, buffer_out
+      mov rdi, 1
+      mov rax, 1
     syscall
     test rax, rax
     js exit_error
@@ -197,5 +197,5 @@ end_program:
     cmp r9b, 1                                             
     jne exit_error                                         
     SYS_EXIT
-    xor rdi, rdi
+      xor rdi, rdi
     syscall
