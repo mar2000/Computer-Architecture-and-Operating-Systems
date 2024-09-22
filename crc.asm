@@ -209,3 +209,7 @@ close_file_exit:
     SYS_EXIT            
     mov rdi, 0                                             
     syscall  
+
+
+    ; Bibliografia: 
+    ; [1] http://www.sunshine2k.de/articles/coding/crc/understanding_crc.html
