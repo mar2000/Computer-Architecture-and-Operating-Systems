@@ -57,8 +57,8 @@ _start:
     
          ; Wczytywanie pliku i sprawdzanie poprawnosci.
     SYS_OPEN                                               ; Wywołaj systemowe otwarcie pliku.
-    mov rdi, [rsp + 16]                                    ; Wczytaj drugi argument z stosu do rejestru rdi.
-    xor rsi, rsi                                           
+      mov rdi, [rsp + 16]                                  ; Wczytaj drugi argument z stosu do rejestru rdi.
+      xor rsi, rsi                                           
     syscall
     test rax, rax
     js exit_error
@@ -108,16 +108,16 @@ skip:
     xor r8, r8                                             ; r8 - tu będziemy zapisywać wynikowy wielomian.
 buffor_loop: 
     SYS_LSEEK
-    mov rdi, [file_id]
-    mov rsi, rcx
+      mov rdi, [file_id]
+      mov rsi, rcx
     SEEK_CUR
     syscall
     test rax, rax
     js close_file_exit_error
     SYS_READ                                               ; Ładowanie danych do bufora.
-    mov rdi, [file_id]       
-    mov rsi, buffer          
-    mov rdx, 65542            
+      mov rdi, [file_id]       
+      mov rsi, buffer          
+      mov rdx, 65542            
     syscall
     cmp rax, 0                                             ; Jeśli nie udało się załadować danych, wyjdź z błędem. 
     jle close_file_exit_error 
@@ -176,16 +176,16 @@ print_crc_next:
     dec rbx
     jnz print_crc_loop                                     ; Jeśli skończyła się pętla to wypisz buffor.
     SYS_WRITE
-    mov rsi, rdi     
-    mov rdx, r9         
-    mov rdi, 1          
+      mov rsi, rdi     
+      mov rdx, r9         
+      mov rdi, 1          
     syscall
     cmp rax, 0
     jl close_file_exit_error
     SYS_WRITE    
-    mov byte [rsi], 0x0a                                   ; Wypisywanie znaku nowej lini.   
-    mov rdx, 1     
-    mov rdi, 1       
+      mov byte [rsi], 0x0a                                 ; Wypisywanie znaku nowej lini.   
+      mov rdx, 1     
+      mov rdi, 1       
     syscall
     cmp rax, 0
     jl close_file_exit_error  
